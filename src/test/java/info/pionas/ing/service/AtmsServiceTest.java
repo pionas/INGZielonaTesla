@@ -6,9 +6,9 @@ import info.pionas.ing.model.atmservice.Task;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class CalculateOrderServiceTest {
+class AtmsServiceTest {
 
-    private final CalculateOrderService service = new CalculateOrderService();
+    private final AtmsService service = new AtmsService();
 
     @Test
     void getOrder() {

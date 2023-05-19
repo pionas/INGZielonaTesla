@@ -3,6 +3,7 @@ package info.pionas.ing.rest;
 import info.pionas.ing.model.onlinegame.Order;
 import info.pionas.ing.model.onlinegame.Players;
 import info.pionas.ing.service.OnlineGameService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,8 @@ class OnlineGameRestResource {
     }
 
     @PostMapping
-    ResponseEntity<Order> getOrder(@RequestBody Players players) {
+    @Cacheable(value = "onlinegame", keyGenerator = "customKeyGenerator")
+    public ResponseEntity<Order> getOrder(@RequestBody Players players) {
         return ResponseEntity.ok(service.getOrder(players));
     }
 }

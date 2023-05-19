@@ -11,7 +11,7 @@ import java.util.Comparator;
 import java.util.Optional;
 
 @Service
-public class CalculateOrderService {
+public class AtmsService {
 
     public Order getOrder(ServiceTasks serviceTasks) {
         final var order = new Order();

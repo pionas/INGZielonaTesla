@@ -3,6 +3,7 @@ package info.pionas.ing.rest;
 import info.pionas.ing.model.transactions.Accounts;
 import info.pionas.ing.model.transactions.Transactions;
 import info.pionas.ing.service.TransactionsService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,8 @@ class TransactionsRestResource {
     }
 
     @PostMapping
-    ResponseEntity<Accounts> getOrder(@RequestBody Transactions transactions) {
+    @Cacheable(value = "transactions", keyGenerator = "customKeyGenerator")
+    public ResponseEntity<Accounts> getOrder(@RequestBody Transactions transactions) {
         return ResponseEntity.ok(service.getAccounts(transactions));
     }
 }
